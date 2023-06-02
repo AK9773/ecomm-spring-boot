@@ -24,9 +24,9 @@ public class Product {
 		super();
 
 	}
-	
-	public Product(String productName, int price, String color, String category, String image,
-			String description, int sellerId) {
+
+	public Product(String productName, int price, String color, String category, String image, String description,
+			int sellerId) {
 		super();
 		this.productName = productName;
 		this.price = price;
@@ -36,88 +36,70 @@ public class Product {
 		this.description = description;
 		this.sellerId = sellerId;
 	}
-	
-
 
 	public int getProductId() {
 		return productId;
 	}
 
-
 	public void setProductId(int productId) {
 		this.productId = productId;
 	}
-
 
 	public String getProductName() {
 		return productName;
 	}
 
-
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-
 
 	public int getPrice() {
 		return price;
 	}
 
-
 	public void setPrice(int price) {
 		this.price = price;
 	}
-
 
 	public String getColor() {
 		return color;
 	}
 
-
 	public void setColor(String color) {
 		this.color = color;
 	}
-
 
 	public String getCategory() {
 		return category;
 	}
 
-
 	public void setCategory(String category) {
 		this.category = category;
 	}
-
 
 	public String getImage() {
 		return image;
 	}
 
-
 	public void setImage(String image) {
 		this.image = image;
 	}
-
 
 	public String getDescription() {
 		return description;
 	}
 
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 
 	public int getSellerId() {
 		return sellerId;
 	}
 
-
 	public void setSellerId(int sellerId) {
 		this.sellerId = sellerId;
 	}
-
 
 	@Override
 	public String toString() {
@@ -125,7 +107,5 @@ public class Product {
 				+ color + ", category=" + category + ", image=" + image + ", description=" + description + ", sellerId="
 				+ sellerId + "]";
 	}
-
-	
 
 }
