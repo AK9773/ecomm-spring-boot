@@ -18,21 +18,21 @@ import com.ak.ecomm.service.SellerService;
 @RequestMapping(value = "/seller-api")
 @CrossOrigin(origins = "http://localhost:4200")
 public class SellerController {
-	
+
 	@Autowired
 	private SellerService sellerService;
-	
-	
-	
+
 	@PostMapping(value = "/seller")
-	public void insertUser(@RequestBody Seller seller) {
-		sellerService.insertSeller(seller);
-		
+	public Seller insertUser(@RequestBody Seller seller) {
+		List<Seller> findByEmail = sellerService.findByEmail(seller.getEmail());
+		if (findByEmail.isEmpty()) {
+			return sellerService.insertSeller(seller);
+		}
+		return null;
 	}
-	
-	
+
 	@GetMapping(value = "/seller/email={email}&password={password}")
-	public List<Seller> sellerDetails(@PathVariable String email,@PathVariable String password){
+	public List<Seller> sellerDetails(@PathVariable String email, @PathVariable String password) {
 		return sellerService.sellerDetails(email, password);
 	}
 

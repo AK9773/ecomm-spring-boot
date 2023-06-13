@@ -24,8 +24,13 @@ public class UserController {
 	private UserService userService;
 
 	@PostMapping(value = "/user")
-	public void insertUser(@RequestBody User user) {
-		userService.insertUser(user);
+	public User insertUser(@RequestBody User user) {
+		List<User> findByEmail = userService.findByEmail(user.getEmail());
+		if (findByEmail.isEmpty()) {
+			return userService.insertUser(user);
+		} else {
+			return null;
+		}
 
 	}
 

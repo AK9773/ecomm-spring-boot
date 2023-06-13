@@ -15,13 +15,17 @@ public class SellerServiceImpl implements SellerService {
 	private SellerRepository sellerRepository;
 
 	@Override
-	public void insertSeller(Seller seller) {
-		sellerRepository.save(seller);
-		
+	public Seller insertSeller(Seller seller) {
+		return sellerRepository.save(seller);
 	}
 
 	@Override
 	public List<Seller> sellerDetails(String email, String password) {
 		return sellerRepository.sellerDetails(email, password);
+	}
+
+	@Override
+	public List<Seller> findByEmail(String email) {
+		return sellerRepository.findByEmail(email);
 	}
 }

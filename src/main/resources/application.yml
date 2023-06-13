@@ -9,4 +9,12 @@ spring:
     ddl-auto: update
    show-sql: true
    generate-ddl: true
-    
+   
+   
+# image file related
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+        
+project.image: E:/images

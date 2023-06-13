@@ -15,8 +15,8 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepository;
 
 	@Override
-	public void insertUser(User user) {
-		userRepository.save(user);
+	public User insertUser(User user) {
+		return userRepository.save(user);
 		
 	}
 
@@ -24,6 +24,11 @@ public class UserServiceImpl implements UserService {
 	public List<User> userDetails(String email, String password) {
 		
 		return userRepository.userDetails(email, password);
+	}
+
+	@Override
+	public List<User> findByEmail(String email) {
+		return userRepository.findByEmail(email);
 	}
 
 	

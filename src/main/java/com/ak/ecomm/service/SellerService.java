@@ -6,8 +6,10 @@ import com.ak.ecomm.entity.Seller;
 
 public interface SellerService {
 
-	public void insertSeller(Seller seller);
+	public Seller insertSeller(Seller seller);
 
 	public List<Seller> sellerDetails(String email, String password);
+	
+	public List<Seller> findByEmail(String email);
 
 }
