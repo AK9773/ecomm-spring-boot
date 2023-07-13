@@ -3,6 +3,7 @@ package com.ak.ecomm.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,7 @@ public class ProductController {
 	private ProductService productService;
 
 	@PostMapping(value = "/product")
+	@PreAuthorize("hasRole('SELLER')")
 	public Product addProduct(@RequestBody Product product) {
 		return productService.addProduct(product);
 	}
@@ -40,17 +42,20 @@ public class ProductController {
 	}
 
 	@PutMapping(value = "/product/productId={productId}")
-	public void updateProduct(@PathVariable int productId,@RequestBody Product product) {
-		productService.updateProduct(productId, product);
+	@PreAuthorize("hasRole('SELLER')")
+	public Product updateProduct(@PathVariable int productId,@RequestBody Product product) {
+		return productService.updateProduct(productId, product);
 
 	}
 
 	@DeleteMapping(value = "/product/productId={productId}")
+	@PreAuthorize("hasRole('SELLER')")
 	public void deleteProduct(@PathVariable int productId) {
 		productService.deleteProduct(productId);
 	}
 	
 	@GetMapping("/product/sellerId={sellerId}")
+	@PreAuthorize("hasRole('SELLER')")
 	public List<Product> findBySellerId(@PathVariable int sellerId){
 		return productService.findBySellerId(sellerId);
 	}

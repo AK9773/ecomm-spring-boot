@@ -1,5 +1,6 @@
 package com.ak.ecomm.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,7 +17,9 @@ public class Product {
 	private int price;
 	private String color;
 	private String category;
+	@Column(length = 2000)
 	private String image;
+	@Column(length = 2000)
 	private String description;
 	private int sellerId;
 

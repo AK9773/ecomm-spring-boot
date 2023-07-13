@@ -1,69 +1,39 @@
 package com.ak.ecomm.entity;
 
+import java.util.Set;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.NamedNativeQuery;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @NamedNativeQuery(name = "Seller.sellerDetails", query = "select * from Seller where email=?1 and password=?2", resultClass = Seller.class)
 public class Seller {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int sellerId;
-	private String name;
+	private String sellerName;
 	private String password;
-	private String email;
+	private String name;
 
-	public Seller() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "SELLER_ROLE", joinColumns = { @JoinColumn(name = "SELLER_ID") }, inverseJoinColumns = {
+			@JoinColumn(name = "ROLE_NAME") })
+	private Set<Role> role;
 
-	public Seller(String name, String password, String email) {
-		super();
-		this.name = name;
-		this.password = password;
-		this.email = email;
-	}
-
-	public int getSellerId() {
-		return sellerId;
-	}
-
-	public void setSellerId(int sellerId) {
-		this.sellerId = sellerId;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	@Override
-	public String toString() {
-		return "Seller [sellerId=" + sellerId + ", name=" + name + ", password=" + password + ", email=" + email + "]";
-	}
-
+	
 }

@@ -3,6 +3,7 @@ package com.ak.ecomm.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,21 +25,25 @@ public class CartController {
 	private CartService cartService;
 
 	@PostMapping(value = "/cart")
+	@PreAuthorize("hasRole('USER')")
 	public Cart addToCart(@RequestBody Cart cart) {
 		return cartService.addToCart(cart);
 	}
 
 	@GetMapping(value = "/cart/userId={userId}")
+	@PreAuthorize("hasRole('USER')")
 	public List<Cart> findByUserId(@PathVariable int userId) {
 		return cartService.findByUserId(userId);
 	}
 
 	@GetMapping(value = "/cart/productId={productId}")
+	@PreAuthorize("hasRole('USER')")
 	public List<Cart> findByProductId(@PathVariable int productId) {
 		return cartService.findByProductId(productId);
 	}
 
 	@DeleteMapping(value = "/cart/cartId={cartId}")
+	@PreAuthorize("hasRole('USER')")
 	public boolean deleteById(@PathVariable int cartId) {
 		return cartService.deleteById(cartId);
 	}

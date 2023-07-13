@@ -6,10 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.ak.ecomm.entity.Seller;
 
-public interface SellerRepository extends JpaRepository<Seller, Integer>{
+public interface SellerRepository extends JpaRepository<Seller, Integer> {
 
-	
-	List<Seller> sellerDetails(String email, String password);
-	
-	List<Seller> findByEmail(String email);
+	List<Seller> findBySellerName(String sellerName);
+
 }
