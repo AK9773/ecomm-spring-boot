@@ -12,7 +12,7 @@ public class Cart {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int cartId;
-	private String name;
+	private String productName;
 	private String price;
 	private String color;
 	private String category;
@@ -26,10 +26,10 @@ public class Cart {
 		super();
 	}
 
-	public Cart(String name, String price, String color, String category, String image, String description,
+	public Cart(String productName, String price, String color, String category, String image, String description,
 			int quantity, int userId, int productId) {
 		super();
-		this.name = name;
+		this.productName = productName;
 		this.price = price;
 		this.color = color;
 		this.category = category;
@@ -48,12 +48,12 @@ public class Cart {
 		this.cartId = cartId;
 	}
 
-	public String getName() {
-		return name;
+	public String getProductName() {
+		return productName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
 	public String getPrice() {
@@ -122,9 +122,9 @@ public class Cart {
 
 	@Override
 	public String toString() {
-		return "Cart [cartId=" + cartId + ", name=" + name + ", price=" + price + ", color=" + color + ", category="
-				+ category + ", image=" + image + ", description=" + description + ", quantity=" + quantity
-				+ ", userId=" + userId + ", productId=" + productId + "]";
+		return "Cart [cartId=" + cartId + ", productName=" + productName + ", price=" + price + ", color=" + color
+				+ ", category=" + category + ", image=" + image + ", description=" + description + ", quantity="
+				+ quantity + ", userId=" + userId + ", productId=" + productId + "]";
 	}
 
 }
