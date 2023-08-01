@@ -18,5 +18,3 @@ spring:
       max-request-size: 20MB
   main:
     allow-circular-references: true
-        
-project.image: E:/images

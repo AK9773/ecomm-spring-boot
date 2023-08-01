@@ -2,11 +2,13 @@ package com.ak.ecomm.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.ak.ecomm.entity.Product;
 
 public interface ProductService {
 
-	public Product addProduct(Product product);
+	public Product addProduct(Product product, MultipartFile[] files);
 
 	public List<Product> getAllProducts();
 

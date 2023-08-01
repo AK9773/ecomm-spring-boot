@@ -1,9 +1,16 @@
 package com.ak.ecomm.entity;
 
+import java.util.Set;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.NamedNativeQuery;
 
 @Entity
@@ -16,28 +23,28 @@ public class Cart {
 	private String price;
 	private String color;
 	private String category;
-	private String image;
 	private String description;
 	private int quantity;
 	private int userId;
 	private int productId;
+	private String imageName;
 
 	public Cart() {
 		super();
 	}
 
-	public Cart(String productName, String price, String color, String category, String image, String description,
-			int quantity, int userId, int productId) {
+	public Cart(String productName, String price, String color, String category, String description, int quantity,
+			int userId, int productId, String imageName) {
 		super();
 		this.productName = productName;
 		this.price = price;
 		this.color = color;
 		this.category = category;
-		this.image = image;
 		this.description = description;
 		this.quantity = quantity;
 		this.userId = userId;
 		this.productId = productId;
+		this.imageName = imageName;
 	}
 
 	public int getCartId() {
@@ -80,14 +87,6 @@ public class Cart {
 		this.category = category;
 	}
 
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-
 	public String getDescription() {
 		return description;
 	}
@@ -120,11 +119,19 @@ public class Cart {
 		this.productId = productId;
 	}
 
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
+
 	@Override
 	public String toString() {
 		return "Cart [cartId=" + cartId + ", productName=" + productName + ", price=" + price + ", color=" + color
-				+ ", category=" + category + ", image=" + image + ", description=" + description + ", quantity="
-				+ quantity + ", userId=" + userId + ", productId=" + productId + "]";
+				+ ", category=" + category + ", description=" + description + ", quantity=" + quantity + ", userId="
+				+ userId + ", productId=" + productId + ", imageName=" + imageName + "]";
 	}
 
 }

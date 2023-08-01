@@ -1,10 +1,17 @@
 package com.ak.ecomm.entity;
 
+import java.util.Set;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.NamedNativeQuery;
 
 @Entity
@@ -18,26 +25,34 @@ public class Product {
 	private String color;
 	private String category;
 	@Column(length = 2000)
-	private String image;
-	@Column(length = 2000)
 	private String description;
 	private int sellerId;
 
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "product_image", joinColumns = { @JoinColumn(name = "product_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "image_id") })
+	private Set<Image> productImages;
+
 	public Product() {
 		super();
-
 	}
 
-	public Product(String productName, int price, String color, String category, String image, String description,
-			int sellerId) {
+	public Product(String productName, int price, String color, String category, String description, int sellerId) {
 		super();
 		this.productName = productName;
 		this.price = price;
 		this.color = color;
 		this.category = category;
-		this.image = image;
 		this.description = description;
 		this.sellerId = sellerId;
+	}
+
+	public Set<Image> getProductImages() {
+		return productImages;
+	}
+
+	public void setProductImages(Set<Image> productImages) {
+		this.productImages = productImages;
 	}
 
 	public int getProductId() {
@@ -80,14 +95,6 @@ public class Product {
 		this.category = category;
 	}
 
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-
 	public String getDescription() {
 		return description;
 	}
@@ -107,8 +114,8 @@ public class Product {
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", productName=" + productName + ", price=" + price + ", color="
-				+ color + ", category=" + category + ", image=" + image + ", description=" + description + ", sellerId="
-				+ sellerId + "]";
+				+ color + ", category=" + category + ", description=" + description + ", sellerId=" + sellerId
+				+ ", productImages=" + productImages + "]";
 	}
 
 }
