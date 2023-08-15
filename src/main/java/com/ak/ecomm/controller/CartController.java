@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ak.ecomm.entity.Cart;
-import com.ak.ecomm.repository.CartRepository;
 import com.ak.ecomm.service.CartService;
 
 @RestController

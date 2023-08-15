@@ -43,7 +43,7 @@ public class WebSecutityConfiguration {
 		http.csrf((csrf) -> csrf.disable())
 				.authorizeHttpRequests((auth) -> auth
 						.requestMatchers("/authenticate/**", "/user-api/**", "/seller-api/**", "/product-api/**",
-								"/cart-api/**", "/order-api/**","/image-api/**")
+								"/cart-api/**", "/order-api/**", "/image-api/**", "/userId/**", "/sellerId/**")
 						.permitAll().requestMatchers(HttpHeaders.ALLOW).permitAll().anyRequest().authenticated())
 				.exceptionHandling((exception) -> exception.authenticationEntryPoint(jwtAuthenticationEntryPoint))
 				.sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

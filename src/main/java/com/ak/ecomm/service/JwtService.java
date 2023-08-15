@@ -105,9 +105,25 @@ public class JwtService implements UserDetailsService {
 			throw new Exception("USER_DISABLED", e);
 		} catch (BadCredentialsException e) {
 			throw new Exception("INVALID_CREDENTIALS", e);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
+
+	public int getUserIdFromJwtToken(String jwtToken) {
+		String userName = JwtUtil.getUserNameFromJwtToken(jwtToken);
+		User findByUserName = userRepository.findByUserName(userName).get(0);
+		int userId = findByUserName.getUserId();
+		return userId;
+
+	}
+
+	public int getSellerIdFromJwtToken(String jwtToken) {
+		String sellerName = JwtUtil.getUserNameFromJwtToken(jwtToken);
+		Seller seller = sellerRepository.findBySellerName(sellerName).get(0);
+		int sellerId = seller.getSellerId();
+		return sellerId;
+		
+	}
+
 }
